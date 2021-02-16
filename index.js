@@ -20,6 +20,15 @@ client.on("message", function (message) {
     const timeTaken = message.createdTimestamp - Date.now();
     message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
   }
+
+  if (command === "r") {
+    const [n, dice] = args[0].split("d");
+    message.reply(`Numero de dados ${n}`);
+    message.reply(`Tipo de dado ${dice}`);
+
+    const roll = roller.roll(args[0]);
+    message.reply(`Resultado: ${roll}`);
+  }
 });
 
 client.login(config.BOT_TOKEN);
