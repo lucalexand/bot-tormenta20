@@ -1,7 +1,10 @@
-const Discord = require("discord.js");
-const config = require("./config.json");
+import * as Discord from "discord.js";
+import config from "./config/config.json";
+
+import { DiceRoller } from "rpg-dice-roller";
 
 const client = new Discord.Client();
+const roller = new DiceRoller();
 
 const prefix = ",";
 
