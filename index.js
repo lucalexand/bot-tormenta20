@@ -14,20 +14,19 @@ client.on("message", function (message) {
 
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(" ");
+  args[0] = args[0].toLowerCase();
   const command = args.shift().toLowerCase();
-
-  if (command === "ping") {
-    const timeTaken = message.createdTimestamp - Date.now();
-    message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
-  }
+  console.log(command);
 
   if (command === "r") {
-    const [n, dice] = args[0].split("d");
-    message.reply(`Numero de dados ${n}`);
-    message.reply(`Tipo de dado ${dice}`);
-
     const roll = roller.roll(args[0]);
     message.reply(`Resultado: ${roll}`);
+  }
+
+  if (command === "rm") {
+    const roll = roller.roll(args[0]);
+    const mensagem = `${message.author.username} - Resultado: ${roll}`;
+    client.users.cache.get("204754225140465675").send(mensagem);
   }
 });
 
